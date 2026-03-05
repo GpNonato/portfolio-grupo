@@ -589,3 +589,25 @@ textarea:focus {
 .prose p {
   margin: 0 0 10px;
 }
+.terminal {
+  background: #020617;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: "Courier New", monospace;
+  color: #22c55e;
+}
+
+.terminal-line {
+  min-height: 20px;
+  margin: 6px 0;
+}
+
+.cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1 }
+  50% { opacity: 0 }
+  100% { opacity: 1 }
+}

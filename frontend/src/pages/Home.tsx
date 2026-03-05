@@ -11,7 +11,7 @@ import { experience } from "../data/experience";
 import { projects } from "../data/projects";
 import { skillGroups } from "../data/skills";
 import { useI18n } from "../i18n/I18nProvider";
-
+import TerminalText from "../components/UI/TerminalText";
 function scrollToHash(hash: string) {
   if (!hash) return;
   const id = hash.replace("#", "");
@@ -66,11 +66,9 @@ export default function Home() {
         <SectionTitle title={t("profile.aboutTitle")} subtitle={t("profile.aboutSubtitle")} />
 
         <div className="grid">
-          <div className="card">
+          <div className="card terminal-card">
             <h3 style={{ marginTop: 0 }}>{t("profile.whoTitle")}</h3>
-            {ta("profile.about").map((p) => (
-              <p key={p} style={{ margin: "10px 0" }}>{p}</p>
-            ))}
+            <TerminalText lines={ta("profile.about")} />
           </div>
         </div>
 
