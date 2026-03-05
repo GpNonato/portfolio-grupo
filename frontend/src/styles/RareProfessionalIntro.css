@@ -1,0 +1,282 @@
+/* ===== MATRIX INTRO (complete) ===== */
+.rpOverlay{
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  background: #000;
+  display: grid;
+  place-items: center;
+  padding: 0;
+
+  /* transição suave geral */
+  opacity: 1;
+}
+
+/* efeito vignette + grain leve */
+.rpOverlay::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(1000px 600px at 50% 40%, rgba(0,255,120,.08), rgba(0,0,0,1) 70%),
+    radial-gradient(1200px 900px at 50% 55%, rgba(255,255,255,.03), rgba(0,0,0,0) 60%);
+  pointer-events:none;
+  opacity: .95;
+}
+
+/* scanlines */
+.rpOverlay::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,.00) 0px,
+      rgba(0,0,0,.00) 2px,
+      rgba(0,0,0,.12) 3px
+    );
+  mix-blend-mode: multiply;
+  pointer-events:none;
+  opacity: .55;
+}
+
+/* ===== Scan Card + Terminal “window” container ===== */
+.rpCard,
+.rpTerminalWrap{
+  width: min(980px, 96vw);
+  border-radius: 10px;
+  overflow: hidden;
+
+  border: 1px solid rgba(0,255,140,.35);
+  background: rgba(0,0,0,.92);
+
+  box-shadow:
+    0 0 35px rgba(0,255,140,.18),
+    0 0 90px rgba(0,255,140,.08),
+    inset 0 0 28px rgba(0,255,140,.06);
+
+  transform-origin: center;
+}
+
+/* ===== Scan content ===== */
+.rpCard{
+  padding: 18px 18px 20px;
+}
+
+.rpTitle{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 14px;
+  letter-spacing: .06em;
+  color: rgba(0,255,120,.82);
+  text-shadow: 0 0 10px rgba(0,255,120,.22);
+  text-transform: lowercase; /* remova se quiser maiúsculas */
+}
+
+.rpScanBar{
+  margin-top: 14px;
+  height: 14px;
+  border-radius: 999px;
+  overflow: hidden;
+
+  background: rgba(0,255,140,.08);
+  border: 1px solid rgba(0,255,140,.22);
+  position: relative;
+}
+
+.rpScanFill{
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, rgba(0,255,120,.95), rgba(0,255,160,.80));
+  box-shadow: 0 0 18px rgba(0,255,120,.25);
+  transition: width 120ms ease;
+}
+
+/* brilho passando por cima */
+.rpScanShine{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,.10) 45%,
+    rgba(255,255,255,.18) 50%,
+    rgba(255,255,255,.10) 55%,
+    transparent 100%
+  );
+  transform: translateX(-60%);
+  animation: rpShine 1.05s linear infinite;
+  pointer-events: none;
+  opacity: .75;
+  filter: blur(.2px);
+}
+@keyframes rpShine {
+  to { transform: translateX(60%); }
+}
+
+.rpHint{
+  margin-top: 12px;
+  font-size: 12.5px;
+  color: rgba(0,255,120,.55);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* piscando "escaneamento concluido!" */
+.rpDoneBlink{
+  margin-top: 14px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  color: rgba(0,255,120,.95);
+  text-shadow: 0 0 12px rgba(0,255,120,.28);
+  text-transform: lowercase;
+  animation: rpBlink 0.65s step-end infinite;
+}
+@keyframes rpBlink {
+  50% { opacity: 0; }
+}
+
+/* ===== Dramatic fade (flash/vinheta) ===== */
+.rpPhase-dramaticFade{
+  animation: rpDramatic 520ms ease-in-out 1;
+}
+@keyframes rpDramatic {
+  0%   { background-color: rgba(0,0,0,1); }
+  35%  { background-color: rgba(0,255,120,.05); }
+  100% { background-color: rgba(0,0,0,1); }
+}
+
+/* ===== Terminal top (mais “cmd antigo”) ===== */
+.rpTerminalTop{
+  background: rgba(0,0,0,.95);
+  border-bottom: 1px solid rgba(0,255,140,.22);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* se quiser manter bolinhas, remova display none */
+.rpDot{ display: none; }
+
+.rpTerminalTitle{
+  margin-left: 0;
+  color: rgba(0,255,140,.72);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  text-shadow: 0 0 10px rgba(0,255,140,.25);
+}
+
+/* terminal text */
+.rpTerminalBody{
+  margin: 0;
+  padding: 16px 18px 18px;
+  min-height: 220px;
+  white-space: pre-wrap;
+  word-break: break-word;
+
+  color: rgba(0,255,120,.92);
+  text-shadow:
+    0 0 10px rgba(0,255,120,.22),
+    0 0 18px rgba(0,255,120,.10);
+
+  font-size: 14px;
+  line-height: 1.55;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  background:
+    radial-gradient(900px 420px at 50% 10%, rgba(0,255,120,.06), rgba(0,0,0,0) 55%);
+}
+
+/* cursor piscando */
+.rpCursor{
+  display: inline-block;
+  width: 9px;
+  height: 16px;
+  margin-left: 2px;
+  background: rgba(0,255,120,.95);
+  box-shadow: 0 0 18px rgba(0,255,120,.35);
+  vertical-align: -2px;
+  animation: rpCursorBlink 0.9s step-end infinite;
+}
+@keyframes rpCursorBlink {
+  50% { opacity: 0; }
+}
+
+/* fade out do prompt */
+.rpFadeOut{
+  animation: rpFadeOut 520ms ease forwards;
+}
+@keyframes rpFadeOut{
+  to { opacity: 0; transform: translateY(-6px); }
+}
+
+/* carregando... */
+.rpLoading{
+  padding: 0 18px 16px;
+  color: rgba(0,255,120,.85);
+  text-shadow: 0 0 10px rgba(0,255,120,.18);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 13px;
+  letter-spacing: .06em;
+  text-transform: lowercase;
+}
+
+/* ===== Transição “janela abrindo” + overlay fade ===== */
+.rpExit{
+  animation: rpOverlayFade 900ms ease forwards;
+}
+
+/* o painel vira a janela abrindo */
+.rpExit .rpTerminalWrap,
+.rpExit .rpCard{
+  animation: rpWindowOpen 900ms cubic-bezier(.2,.9,.2,1) forwards;
+  transform-origin: center;
+}
+
+@keyframes rpWindowOpen{
+  0%{
+    transform: scale(1);
+    filter: brightness(1) saturate(1);
+    clip-path: inset(0% 0% 0% 0% round 10px);
+    opacity: 1;
+  }
+  35%{
+    transform: scale(1.02);
+    clip-path: inset(18% 10% 18% 10% round 10px);
+    opacity: 1;
+  }
+  100%{
+    transform: scale(1.08);
+    clip-path: inset(0% 0% 0% 0% round 10px);
+    opacity: 0;
+  }
+}
+
+@keyframes rpOverlayFade{
+  0%{ opacity: 1; }
+  70%{ opacity: 1; }
+  100%{ opacity: 0; }
+}
+
+/* ===== Site por trás (sem :has) ===== */
+.siteBehind > *:first-child{
+  filter: blur(2px);
+  opacity: .15;
+  transform: scale(.995);
+  transition: opacity 600ms ease, filter 600ms ease, transform 600ms ease;
+}
+
+/* quando intro acabou, site volta ao normal */
+.introDone > *:first-child{
+  opacity: 1;
+  filter: none;
+  transform: none;
+}
+
+/* Acessibilidade */
+@media (prefers-reduced-motion: reduce){
+  .rpOverlay::after{ display:none; }
+  .rpScanShine, .rpDoneBlink, .rpCursor { animation:none !important; }
+  .rpFadeOut, .rpExit, .rpExit .rpTerminalWrap, .rpExit .rpCard{ animation:none !important; }
+}
