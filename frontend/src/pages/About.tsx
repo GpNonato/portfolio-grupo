@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useI18n } from "../i18n/I18nProvider";
+import { profile } from "../data/profile";
 import styles from "../styles/About.module.css";
 
 type Line = { text: string; speed?: number; pauseAfter?: number };
@@ -9,18 +9,16 @@ function sleep(ms: number) {
 }
 
 export default function About() {
-  const { t, ta, lang } = useI18n();
-
   const script: Line[] = useMemo(() => {
-    const aboutLines = ta("about.terminalLines");
+    const about = profile.about;
 
     return [
       { text: "C:\\Users\\visitor> whoami", speed: 14, pauseAfter: 180 },
-      { text: t("about.nameLine"), speed: 10, pauseAfter: 220 },
+      { text: about.promptName, speed: 10, pauseAfter: 220 },
       { text: "", pauseAfter: 120 },
-      { text: "C:\\Users\\visitor> type sobre_mim.txt", speed: 14, pauseAfter: 240 },
+      { text: `C:\\Users\\visitor> type ${about.fileName}`, speed: 14, pauseAfter: 240 },
 
-      ...aboutLines.map((line) => ({
+      ...about.lines.map((line) => ({
         text: line,
         speed: 11,
         pauseAfter: 120,
@@ -29,7 +27,7 @@ export default function About() {
       { text: "", pauseAfter: 120 },
       { text: "C:\\Users\\visitor> _", speed: 18, pauseAfter: 0 },
     ];
-  }, [t, ta, lang]);
+  }, []);
 
   const [typed, setTyped] = useState("");
   const cancelled = useRef(false);
@@ -75,13 +73,13 @@ export default function About() {
     running.current = false;
   };
 
-  // recomeça ao montar e ao trocar idioma
   useEffect(() => {
     runTyping();
 
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Enter" || e.key === "Escape" || e.key === " ") skip();
     };
+
     const onClick = () => skip();
 
     document.addEventListener("keydown", onKey);
@@ -92,20 +90,19 @@ export default function About() {
       document.removeEventListener("keydown", onKey);
       document.removeEventListener("click", onClick);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lang]);
+  }, []);
 
   return (
     <div className="stack">
       <div className="section-title">
-        <h1>{t("about.title")}</h1>
+        <h1>{profile.about.title}</h1>
       </div>
 
       <div className={styles.aboutTerminal}>
         <div className={styles.aboutTerminalTop}>
           <span className={styles.aboutDot} />
-          <span className={styles.aboutTerminalTitle}>C:\\Users\\visitor</span>
-          <span className={styles.aboutTerminalHint}>{t("about.hint")}</span>
+          <span className={styles.aboutTerminalTitle}>{profile.about.terminalTitle}</span>
+          <span className={styles.aboutTerminalHint}>{profile.about.hint}</span>
         </div>
 
         <pre className={styles.aboutTerminalBody}>

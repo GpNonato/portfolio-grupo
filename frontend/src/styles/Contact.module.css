@@ -236,6 +236,12 @@
   line-height: 1.6;
   color: rgba(180, 230, 200, 0.56);
 }
+.channelItem {
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  width: 100%;
+}
 
 @media (max-width: 960px) {
   .contactGrid {

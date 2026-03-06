@@ -13,32 +13,37 @@ export default function ExperienceCard({ item, index = 0 }: Props) {
 
   const company = item?.company ?? "—";
   const role = item?.role ?? "—";
-  const period = (item as any)?.period as string | undefined;
+  const period = item?.period;
+  const badge = item?.badge;
 
-  // evita crash se highlights vier undefined
-  const highlights: string[] = Array.isArray((item as any)?.highlights)
-    ? ((item as any).highlights as string[])
-    : [];
+  const bullets: string[] = Array.isArray(item?.bullets) ? item.bullets : [];
 
   return (
     <div className={styles.expCard}>
       <div className={styles.expCardHeader}>
-        <div className={styles.expCardIcon} style={{ background: `${color}20`, color }}>
+        <div
+          className={styles.expCardIcon}
+          style={{ background: `${color}20`, color }}
+        >
           {company.charAt(0) || "?"}
         </div>
 
         <div className={styles.expCardHeadInfo}>
           <div className={styles.expCardCompany}>{company}</div>
           <div className={styles.expCardRole}>{role}</div>
-          {period && <div className={styles.expCardPeriod}>{period}</div>}
+
+          <div className={styles.expCardMeta}>
+            {period && <div className={styles.expCardPeriod}>{period}</div>}
+            {badge && <div className={styles.expCardBadge}>{badge}</div>}
+          </div>
         </div>
       </div>
 
       <div className={styles.expCardDivider} />
 
       <ul className={styles.expCardHighlights}>
-        {highlights.length > 0 ? (
-          highlights.map((h, i) => <li key={i}>{h}</li>)
+        {bullets.length > 0 ? (
+          bullets.map((bullet, i) => <li key={i}>{bullet}</li>)
         ) : (
           <li style={{ opacity: 0.7 }}>Sem detalhes adicionais.</li>
         )}

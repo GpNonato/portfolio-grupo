@@ -4,22 +4,40 @@ export const skillGroups: SkillGroup[] = [
   {
     id: "tech",
     items: [
-      "TypeScript",
+      "Java",
+      "Spring Boot",
+      "Python",
       "React",
-      "Vite",
+      "TypeScript",
+      "Angular",
+      "SQL",
       "Node.js",
-      "Java / Spring Boot",
-      "SQL (PostgreSQL / MySQL)",
-      "AWS (conceitos)",
-      "Git",
+      "REST APIs"
     ],
   },
+
   {
     id: "tools",
-    items: ["React Router", "REST APIs", "Docker (noções)", "CI/CD (noções)"],
+    items: [
+      "Git",
+      "Docker",
+      "AWS",
+      "Azure",
+      "CI/CD",
+      "Linux",
+      "Postman"
+    ],
   },
+
   {
     id: "soft",
-    items: ["Comunicação", "Colaboração", "Proatividade", "Organização", "Aprendizado contínuo"],
+    items: [
+      "Comunicação",
+      "Trabalho em equipe",
+      "Resolução de problemas",
+      "Proatividade",
+      "Organização",
+      "Aprendizado contínuo"
+    ],
   },
 ];

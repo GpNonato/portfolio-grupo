@@ -20,6 +20,8 @@ export type Profile = {
 
 export type Project = {
   slug: string;
+  title: string;
+  description: string;
   stack: string[];
   links: ExternalLinks;
 };
@@ -27,9 +29,9 @@ export type Project = {
 export type ExperienceItem = {
   company: string;
   role: string;
-  period: string;
+  period?: string;
+  badge?: string;
   bullets: string[];
-  badge?: string; 
 };
 
 export type EducationItem = {

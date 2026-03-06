@@ -21,9 +21,7 @@ export default function ProjectCard({ project }: Props) {
         <p className="muted">{description}</p>
 
         <div className="tag-row">
-          {project.stack.map((s) => (
-            <Tag key={s}>{s}</Tag>
-          ))}
+          {project.title && <Tag>{project.title}</Tag>}
         </div>
 
         <div className="actions">

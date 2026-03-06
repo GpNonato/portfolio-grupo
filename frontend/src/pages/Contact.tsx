@@ -22,11 +22,27 @@ function buildMailto(params: {
 
 export default function Contact() {
   const { t } = useI18n();
+
   const [form, setForm] = useState<FormState>({
     name: "",
     email: "",
     message: "",
   });
+
+  const [copied, setCopied] = useState<string | null>(null);
+
+  const copy = async (value: string, key: string) => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(key);
+
+      setTimeout(() => {
+        setCopied(null);
+      }, 2000);
+    } catch {
+      console.error("Clipboard failed");
+    }
+  };
 
   const mailtoForm = useMemo(() => {
     const subject = t("contact.subject");
@@ -42,35 +58,12 @@ export default function Contact() {
     });
   }, [form, t]);
 
-  const mailtoEmail = useMemo(() => {
-    return buildMailto({
-      to: profile.links.email,
-      subject: t("contact.subject"),
-      body: t("contact.bodyEmail", { email: profile.links.email }),
-    });
-  }, [t]);
-
-  const mailtoLinkedin = useMemo(() => {
-    return buildMailto({
-      to: profile.links.email,
-      subject: t("contact.subjectLinkedin"),
-      body: t("contact.bodyLinkedin", { url: profile.links.linkedin }),
-    });
-  }, [t]);
-
-  const mailtoGithub = useMemo(() => {
-    return buildMailto({
-      to: profile.links.email,
-      subject: t("contact.subjectGithub"),
-      body: t("contact.bodyGithub", { url: profile.links.github }),
-    });
-  }, [t]);
-
   return (
     <div className="page">
       <SectionTitle title={t("contact.title")} subtitle={t("contact.subtitle")} />
 
       <div className={styles.contactGrid}>
+        {/* CONTACT CHANNELS */}
         <div className={styles.channelPanel}>
           <div className={styles.panelTop}>
             <div className={styles.panelTitle}>
@@ -81,53 +74,90 @@ export default function Contact() {
           </div>
 
           <div className={styles.panelBody}>
-            <a className={styles.channelItem} href={mailtoEmail}>
-              <div className={styles.channelIcon} aria-hidden="true">
-                ✉
-              </div>
-              <div className={styles.channelContent}>
-                <div className={styles.channelLabel}>{t("contact.labels.email")}</div>
-                <div className={styles.channelValue}>{profile.links.email}</div>
-              </div>
-            </a>
+            {/* EMAIL */}
+            <button
+              className={styles.channelItem}
+              onClick={() => copy(profile.links.email, "email")}
+            >
+              <div className={styles.channelIcon}>✉</div>
 
-            <a className={styles.channelItem} href={mailtoLinkedin}>
-              <div className={styles.channelIcon} aria-hidden="true">
-                in
-              </div>
               <div className={styles.channelContent}>
-                <div className={styles.channelLabel}>{t("contact.labels.linkedin")}</div>
-                <div className={styles.channelValue}>{profile.links.linkedin}</div>
-              </div>
-            </a>
+                <div className={styles.channelLabel}>
+                  {t("contact.labels.email")}
+                </div>
 
-            <a className={styles.channelItem} href={mailtoGithub}>
-              <div className={styles.channelIcon} aria-hidden="true">
-                GH
+                <div className={styles.channelValue}>
+                  {copied === "email"
+                    ? "COPIED ✓"
+                    : profile.links.email}
+                </div>
               </div>
+            </button>
+
+            {/* LINKEDIN */}
+            <button
+              className={styles.channelItem}
+              onClick={() => copy(profile.links.linkedin, "linkedin")}
+            >
+              <div className={styles.channelIcon}>in</div>
+
               <div className={styles.channelContent}>
-                <div className={styles.channelLabel}>{t("contact.labels.github")}</div>
-                <div className={styles.channelValue}>{profile.links.github}</div>
+                <div className={styles.channelLabel}>
+                  {t("contact.labels.linkedin")}
+                </div>
+
+                <div className={styles.channelValue}>
+                  {copied === "linkedin"
+                    ? "COPIED ✓"
+                    : profile.links.linkedin}
+                </div>
               </div>
-            </a>
+            </button>
+
+            {/* GITHUB */}
+            <button
+              className={styles.channelItem}
+              onClick={() => copy(profile.links.github, "github")}
+            >
+              <div className={styles.channelIcon}>GH</div>
+
+              <div className={styles.channelContent}>
+                <div className={styles.channelLabel}>
+                  {t("contact.labels.github")}
+                </div>
+
+                <div className={styles.channelValue}>
+                  {copied === "github"
+                    ? "COPIED ✓"
+                    : profile.links.github}
+                </div>
+              </div>
+            </button>
           </div>
         </div>
 
+        {/* FORM */}
         <div className={styles.formPanel}>
           <div className={styles.panelTop}>
             <div className={styles.panelTitle}>
-              <span className={styles.panelLed} aria-hidden="true" />
+              <span className={styles.panelLed} />
               SEND TRANSMISSION
             </div>
+
             <div className={styles.panelMeta}>secure line</div>
           </div>
 
           <div className={styles.panelBody}>
-            <h2 className={styles.formTitle}>{t("contact.sendMessage")}</h2>
+            <h2 className={styles.formTitle}>
+              {t("contact.sendMessage")}
+            </h2>
 
             <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
               <label className={styles.field}>
-                <span className={styles.fieldLabel}>{t("contact.yourName")}</span>
+                <span className={styles.fieldLabel}>
+                  {t("contact.yourName")}
+                </span>
+
                 <input
                   className={styles.fieldInput}
                   value={form.name}
@@ -139,7 +169,10 @@ export default function Contact() {
               </label>
 
               <label className={styles.field}>
-                <span className={styles.fieldLabel}>{t("contact.yourEmail")}</span>
+                <span className={styles.fieldLabel}>
+                  {t("contact.yourEmail")}
+                </span>
+
                 <input
                   className={styles.fieldInput}
                   type="email"
@@ -152,7 +185,10 @@ export default function Contact() {
               </label>
 
               <label className={styles.field}>
-                <span className={styles.fieldLabel}>{t("contact.yourMessage")}</span>
+                <span className={styles.fieldLabel}>
+                  {t("contact.yourMessage")}
+                </span>
+
                 <textarea
                   className={styles.fieldTextarea}
                   value={form.message}
@@ -170,7 +206,9 @@ export default function Contact() {
                 </a>
               </div>
 
-              <p className={styles.note}>{t("contact.note")}</p>
+              <p className={styles.note}>
+                {t("contact.note")}
+              </p>
             </form>
           </div>
         </div>

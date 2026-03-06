@@ -29,7 +29,7 @@ export default function Projects() {
             </div>
 
             <div className={styles.projectArchiveBody}>
-              <h3>{project.name}</h3>
+              <h3>{project.title}</h3>
               <p>{project.description}</p>
 
               <div className={styles.projectArchiveTags}>
