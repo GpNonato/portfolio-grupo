@@ -44,45 +44,4 @@ export const projects: Project[] = [
       live: ""
     }
   },
-
-  {
-    slug: "batalha-digimon",
-
-    title: "Batalha Digimon",
-
-    description:
-      "Projeto de automação e análise de dados envolvendo scraping e processamento de informações do jogo Digimon.",
-
-    stack: [
-      "Python",
-      "Selenium",
-      "MySQL"
-    ],
-
-    links: {
-      repo: "",
-      live: ""
-    }
-  },
-
-  {
-    slug: "plataforma-chamados",
-
-    title: "Plataforma de Chamados",
-
-    description:
-      "Sistema de gerenciamento de chamados utilizando arquitetura de microsserviços e integração com AWS.",
-
-    stack: [
-      "Java",
-      "Spring Boot",
-      "AWS",
-      "DynamoDB"
-    ],
-
-    links: {
-      repo: "",
-      live: ""
-    }
-  }
 ];

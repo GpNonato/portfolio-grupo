@@ -47,7 +47,7 @@ export const dictionaries = {
       scanner: "ESCANEANDO PERFIL...",
       ctaProjects: "Ver projetos",
       ctaContact: "Contato",
-      stats: ["React", "Java", "Spring Boot", "AWS"],
+      stats: ["React", "Java", "Spring Boot"],
       cards: {
         focus: {
           title: "Foco",
@@ -75,7 +75,7 @@ export const dictionaries = {
         found: "Profissional Raro encontrado:",
         name: "Nome: {name}",
         type: "Tipo: {role}",
-        level: "Nível: Júnior",
+        level: "Nível: Estagiário",
         rarity: "Raridade: Profissional único!",
       },
     },
@@ -128,7 +128,7 @@ export const dictionaries = {
           period: "Fev 2026 — Atual",
           badge: "Full Stack",
           bullets: [
-            "Desenvolvimento e manutenção de aplicações web em PHP utilizando CodeIgniter e Laravel.",
+            "Automatizacao de tarefas com Python, Manutenção e desenvolvimento com C#.",
             "Implementação de novas funcionalidades e melhorias de performance nas aplicações.",
             "Manipulação e otimização de bancos de dados SQL.",
             "Atuação em equipe multidisciplinar no planejamento, desenvolvimento e entrega de demandas.",
@@ -147,19 +147,6 @@ export const dictionaries = {
             "Desenvolvimento de interfaces em React.",
             "Análise e manipulação de dados com Excel.",
             "Suporte à infraestrutura interna da empresa.",
-          ],
-        },
-        axis: {
-          role: "Estagiário de Desenvolvimento",
-          period: "Jul 2022 — Dez 2022",
-          badge: "Estágio",
-          bullets: [
-            "Desenvolvimento de funcionalidades para sistema interno da empresa.",
-            "Atuação no desenvolvimento front-end e back-end.",
-            "Implementação de funcionalidades em .NET e React.",
-            "Execução de testes e validação de funcionalidades.",
-            "Versionamento de código utilizando Git.",
-            "Participação em metodologias ágeis (Scrum).",
           ],
         },
       },
@@ -221,31 +208,7 @@ export const dictionaries = {
             "Estrutura pensada para relatórios e acompanhamento gerencial.",
           ],
         },
-        "batalha-digimon": {
-          name: "Batalha Digimon",
-          description:
-            "Projeto de automação e análise de dados envolvendo scraping e processamento de informações do jogo Digimon.",
-          highlights: [
-            "Automação de coleta de dados com Python e Selenium.",
-            "Processamento e organização das informações em banco de dados.",
-            "Aplicação prática de scraping e análise para transformar dados em insights.",
-          ],
-        },
-        "plataforma-chamados": {
-          name: "Plataforma de Chamados",
-          description:
-            "Sistema de gerenciamento de chamados utilizando arquitetura de microsserviços e integração com AWS.",
-          highlights: [
-            "Arquitetura baseada em microsserviços para separar responsabilidades.",
-            "Integração com serviços AWS para escalabilidade e suporte à operação.",
-            "Foco em organização do fluxo de atendimento e rastreabilidade dos chamados.",
-          ],
-        },
-        frifasfood: {
-          name: "FrifasFood",
-          description: "Sistema full-stack para pedidos e gestão de produtos.",
-          highlights: ["Autenticação e fluxo de pedidos", "Dashboard administrativo", "API REST + validações"],
-        },
+
       },
     },
     skills: {
@@ -256,9 +219,9 @@ export const dictionaries = {
         soft: "Habilidades Interpessoais",
       },
       items: {
-        tech: ["Java", "Spring Boot", "Python", "React", "TypeScript", "Angular", "SQL", "Node.js", "REST APIs"],
-        tools: ["Git", "Docker", "AWS", "Azure", "CI/CD", "Linux", "Postman"],
-        soft: ["Comunicação", "Trabalho em equipe", "Resolução de problemas", "Proatividade", "Organização", "Aprendizado contínuo"],
+        tech: ["Java", "Spring Boot", "Python", "React", "TypeScript", "SQL", "Node.js", "REST APIs", "Serenity", "C#"],
+        tools: ["Git", "Linux", "Postman"],
+        soft: ["Trabalho em equipe", "Resolução de problemas", "Proatividade", "Organização", "Aprendizado contínuo"],
       },
     },
     errors: {
@@ -438,27 +401,15 @@ export const dictionaries = {
           period: "Jul 2025 — Jan 2026",
           badge: "Backend / Automation",
           bullets: [
-            "Built full stack applications across front-end and back-end layers.",
-            "Created bots and automation workflows using Python.",
-            "Developed APIs and microservices with Java and Spring.",
-            "Modeled and managed SQL databases.",
-            "Built interfaces with React.",
-            "Worked with Excel for data analysis and manipulation.",
-            "Supported the company’s internal infrastructure.",
+            "Development of full stack applications (front-end and back-end).",
+            "Creating bots and automations using Python.",
+            "Development of APIs and microservices with Java and Spring.",
+            "Manipulation and modeling of SQL databases.",
+            "Interface development in React.",
+            "Data analysis and manipulation with Excel.",
+            "Support for the company's internal infrastructure.",
           ],
-        },
-        axis: {
-          role: "Software Development Intern",
-          period: "Jul 2022 — Dec 2022",
-          badge: "Internship",
-          bullets: [
-            "Developed features for the company’s internal system.",
-            "Worked on both front-end and back-end development.",
-            "Implemented features in .NET and React.",
-            "Executed tests and validated functionalities.",
-            "Managed code versioning with Git.",
-            "Participated in agile methodologies such as Scrum.",
-          ],
+          
         },
       },
     },
@@ -519,31 +470,6 @@ export const dictionaries = {
             "Structure designed for reporting and managerial follow-up.",
           ],
         },
-        "batalha-digimon": {
-          name: "Digimon Battle",
-          description:
-            "Automation and data analysis project involving scraping and processing information from the Digimon game.",
-          highlights: [
-            "Automated data collection with Python and Selenium.",
-            "Processed and organized information in a database.",
-            "Practical use of scraping and analysis to turn data into insights.",
-          ],
-        },
-        "plataforma-chamados": {
-          name: "Support Tickets Platform",
-          description:
-            "Ticket management system built with a microservices architecture and AWS integration.",
-          highlights: [
-            "Microservices-based architecture to separate responsibilities.",
-            "AWS integration for scalability and operational support.",
-            "Focus on organizing the support flow and improving ticket traceability.",
-          ],
-        },
-        frifasfood: {
-          name: "FrifasFood",
-          description: "Full-stack system for ordering and product management.",
-          highlights: ["Authentication and ordering flow", "Admin dashboard", "REST API + validations"],
-        },
       },
     },
     skills: {
@@ -554,9 +480,9 @@ export const dictionaries = {
         soft: "Soft Skills",
       },
       items: {
-        tech: ["Java", "Spring Boot", "Python", "React", "TypeScript", "Angular", "SQL", "Node.js", "REST APIs"],
-        tools: ["Git", "Docker", "AWS", "Azure", "CI/CD", "Linux", "Postman"],
-        soft: ["Communication", "Teamwork", "Problem solving", "Proactivity", "Organization", "Continuous learning"],
+        tech: ["Java", "Spring Boot", "Python", "React", "TypeScript", "SQL", "Node.js", "REST APIs", "Serenity", "C#"],
+        tools: ["Git", "Linux", "Postman"],
+        soft: ["Teamwork", "Problem solving", "Proactivity", "Organization", "Continuous learning"],
       },
     },
     errors: {

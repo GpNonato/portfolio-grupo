@@ -10,8 +10,8 @@ export const education: (EducationItem & { id: string })[] = [
   },
   {
     id: "cotemig",
-    institution: "COTEMIG",
-    course: "Formação Técnica em Tecnologia da Informação",
+    institution: "IFMG",
+    course: "Formação Técnica em automação industrial",
     period: "Concluído",
     details: [],
   },

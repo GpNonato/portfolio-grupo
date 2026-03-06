@@ -1,13 +1,13 @@
 export const profile = {
-  name: "Felipe Parreiras",
+  name: "Gabriel Nonato",
   role: "Desenvolvedor de Software Full Stack",
 
-  heroImage: "/images/felipe-hero.jpeg",
+  heroImage: "/images/gabriel-hero.jpeg",
 
   links: {
-    email: "felipe.parreiras04@gmail.com",
-    github: "https://github.com/FelipeParreiras",
-    linkedin: "https://linkedin.com/in/felipeparreiras",
+    email: "gabrielpnonato@gmail.com",
+    github: "https://github.com/gpnonato",
+    linkedin: "https://linkedin.com/in/gabrielpnonato",
   },
 
   hero: {
@@ -17,7 +17,7 @@ export const profile = {
     scanner: "SCANNING PROFILE...",
     ctaProjects: "Ver projetos",
     ctaContact: "Contato",
-    stats: ["React", "Java", "Spring Boot", "AWS"],
+    stats: ["React", "Java", "Spring Boot", "TypeScript", "Python", "SQL"],
     cards: [
       {
         title: "Foco",
@@ -38,7 +38,7 @@ export const profile = {
     title: "Sobre mim",
     hint: "Clique/Enter para pular",
     terminalTitle: "C:\\Users\\visitor",
-    promptName: "Felipe Parreiras",
+    promptName: "Gabriel Nonato",
     fileName: "sobre_mim.txt",
     lines: [
       "Sou desenvolvedor full stack com foco em construir soluções reais e úteis.",
